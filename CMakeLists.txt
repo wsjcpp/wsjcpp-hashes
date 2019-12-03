@@ -12,6 +12,10 @@ set(EXECUTABLE_OUTPUT_PATH ${wsjcpp-hashes_SOURCE_DIR})
 # include header dirs
 list (APPEND WSJCPP_INCLUDE_DIRS "src")
 
+list (APPEND WSJCPP_SOURCES "src/smallsha1.h")
+list (APPEND WSJCPP_SOURCES "src/smallsha1.cpp")
+list (APPEND WSJCPP_SOURCES "src/md5.h")
+list (APPEND WSJCPP_SOURCES "src/md5.cpp")
 list (APPEND WSJCPP_SOURCES "src/wsjcpp_hashes.h")
 list (APPEND WSJCPP_SOURCES "src/wsjcpp_hashes.cpp")
 list (APPEND WSJCPP_SOURCES "src/main.cpp")
