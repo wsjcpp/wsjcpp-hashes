@@ -1,6 +1,6 @@
 #include <string>
-#include <wsjcpp_hashes.h>
-#include <unit_tests.h>
+#include <wsjcpp_core.h>
+#include <wsjcpp_unit_tests.h>
 
 int main(int argc, char** argv) {
     WSJCppCore::initRandom();

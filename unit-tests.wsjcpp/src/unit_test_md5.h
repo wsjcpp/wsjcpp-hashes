@@ -1,7 +1,7 @@
 #ifndef UNIT_TEST_MD5_H
 #define UNIT_TEST_MD5_H
 
-#include <unit_tests.h>
+#include <wsjcpp_unit_tests.h>
 
 class UnitTestMd5 : public UnitTestBase {
     public:

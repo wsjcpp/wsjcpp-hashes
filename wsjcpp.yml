@@ -1,4 +1,3 @@
-
 wsjcpp_version: v0.0.1
 cmake_cxx_standard: 11
 cmake_minimum_required: 3.0
@@ -9,7 +8,7 @@ description: Collection of hashes
 issues: https://github.com/wsjcpp/wsjcpp-hashes/issues
 
 repositories:
-  - type: main 
+  - type: main
     url: "https://github.com/wsjcpp/wsjcpp-hashes"
 
 keywords:
@@ -30,13 +29,12 @@ authors:
   - name: Evgenii Sopov
     email: mrseakg@gmail.com
 
-requirements:
-  packages:
-    - name: wsjcpp/wsjcpp-core
-      version: v0.0.1
-      url: "https://github.com/wsjcpp/wsjcpp-core"
-  libs:
-    - pthread
+dependencies:
+  - name: "wsjcpp-core"
+    version: "v0.0.4"
+    url: "https://github.com/wsjcpp/wsjcpp-core:master"
+    origin: "https://github.com/"
+    installation-dir: "./src.wsjcpp/wsjcpp_core"
 
 distribution:
   - source-file: src/md5.cpp
@@ -65,12 +63,8 @@ distribution:
     type: "source-code"
 
 unit-tests:
-  folder: unit-tests # default
-  files:
-    - unit-tests/src/main.cpp
-    - unit-tests/src/unit_tests.h
-    - unit-tests/src/unit_tests.cpp
-    - unit-tests/src/unit_test_md5.h
-    - unit-tests/src/unit_test_md5.cpp
-    - unit-tests/src/unit_test_sha1.h
-    - unit-tests/src/unit_test_sha1.cpp
+  cases:
+    - name: "Md5"
+      description: "check md5"
+    - name: "Sha1"
+      description: "check sha1"

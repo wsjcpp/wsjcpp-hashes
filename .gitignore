@@ -1,4 +1,5 @@
 wsjcpp-hashes
+.wsjcpp/*
 tmp/*
 .vscode/*
 

@@ -1,7 +1,7 @@
 #ifndef UNIT_TEST_SHA1_H
 #define UNIT_TEST_SHA1_H
 
-#include <unit_tests.h>
+#include <wsjcpp_unit_tests.h>
 
 class UnitTestSha1 : public UnitTestBase {
     public:

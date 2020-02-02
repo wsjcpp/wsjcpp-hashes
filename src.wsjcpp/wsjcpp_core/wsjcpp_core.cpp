@@ -16,6 +16,9 @@
 #include <cstdint>
 #include <unistd.h>
 #include <streambuf>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
 
 // ---------------------------------------------------------------------
 
@@ -90,6 +93,34 @@ std::string WSJCppCore::doNormalizePath(const std::string & sPath) {
         if (i != nLastNew) {
             sRet += "/";
         }
+    }
+    return sRet;
+}
+
+// ---------------------------------------------------------------------
+
+std::string WSJCppCore::extractFilename(const std::string &sPath) {
+    // split path by /
+    std::vector<std::string> vNames;
+    std::string s = "";
+    int nStrLen = sPath.length();
+    for (int i = 0; i < sPath.length(); i++) {
+        if (sPath[i] == '/') {
+            vNames.push_back(s);
+            s = "";
+            if (i == nStrLen-1) {
+                vNames.push_back("");
+            }
+        } else {
+            s += sPath[i];
+        }
+    }
+    if (s != "") {
+         vNames.push_back(s);
+    }
+    std::string sRet;
+    if (vNames.size() > 0) {
+        sRet = vNames[vNames.size()-1];
     }
     return sRet;
 }
@@ -275,7 +306,7 @@ bool WSJCppCore::makeDir(const std::string &sDirname) {
         std::cout << "FAILED create folder " << sDirname << std::endl;
         return false;
     }
-    std::cout << "nStatus: " << nStatus << std::endl;
+    // std::cout << "nStatus: " << nStatus << std::endl;
     return true;
 }
 
@@ -283,12 +314,12 @@ bool WSJCppCore::makeDir(const std::string &sDirname) {
 
 bool WSJCppCore::writeFile(const std::string &sFilename, const std::string &sContent) {
     
-    std::ofstream f(sFilename, std::ifstream::in);
+    // std::ofstream f(sFilename, std::ifstream::in);
+    std::ofstream f(sFilename, std::ios::out);
     if (!f) {
-        std::cout << "FAILED could not create file to wtite " << sFilename << std::endl;
+        WSJCppLog::err("WSJCppCore", "Could not create file to write '" + sFilename + "'");
         return false;
     }
-
     f << sContent << std::endl;
     f.close();
     return true;
@@ -325,7 +356,11 @@ bool WSJCppCore::writeFile(const std::string &sFilename, const char *pBuffer, co
     return true;
 }
 
+// ---------------------------------------------------------------------
 
+bool WSJCppCore::removeFile(const std::string &sFilename) {
+    return remove(sFilename.c_str()) == 0;
+}
 
 // ---------------------------------------------------------------------
 
@@ -354,6 +389,14 @@ std::string& WSJCppCore::to_lower(std::string& str) {
     return str;
 }
 
+// ---------------------------------------------------------------------
+// will worked only with latin
+
+std::string WSJCppCore::toUpper(const std::string& str) {
+    std::string sRet = str;
+    std::transform(sRet.begin(), sRet.end(), sRet.begin(), ::toupper);
+    return sRet;
+}
 
 // ---------------------------------------------------------------------
 
@@ -374,6 +417,44 @@ std::string WSJCppCore::createUuid() {
     }
     // Fallen::initRandom();
     return sRet;
+}
+
+// ---------------------------------------------------------------------
+
+bool WSJCppCore::isIPv4(const std::string& str) {
+    int n = 0;
+    std::string s[4] = {"", "", "", ""};
+    for (int i = 0; i < str.length(); i++) {
+        char c = str[i];
+        if (n > 3) {
+            return false;
+        }
+        if (c >= '0' && c <= '9') {
+            s[n] += c;
+        } else if (c == '.') {
+            n++;
+        } else {
+            return false;
+        }
+    }
+    for (int i = 0; i < 4; i++) {
+        if (s[i].length() > 3) {
+            return false;
+        }
+        int p = std::stoi(s[i]);
+        if (p > 255 || p < 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// ---------------------------------------------------------------------
+
+bool WSJCppCore::isIPv6(const std::string& str) {
+    unsigned char buf[sizeof(struct in6_addr)];
+    bool isValid = inet_pton(AF_INET6, str.c_str(), buf);
+    return isValid;
 }
 
 // ---------------------------------------------------------------------
@@ -492,3 +573,5 @@ void WSJCppLog::add(WSJCppColorModifier &clr, const std::string &sType, const st
     logFile << sLogMessage << std::endl;
     logFile.close();
 }
+
+
