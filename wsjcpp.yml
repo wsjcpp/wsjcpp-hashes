@@ -2,9 +2,9 @@ wsjcpp_version: v0.0.1
 cmake_cxx_standard: 11
 cmake_minimum_required: 3.0
 
-name: wsjcpp/wsjcpp-hashes
+name: wsjcpp-hashes
 version: v0.0.1
-description: Collection of hashes
+description: Small Collection of hashes
 issues: https://github.com/wsjcpp/wsjcpp-hashes/issues
 
 repositories:
