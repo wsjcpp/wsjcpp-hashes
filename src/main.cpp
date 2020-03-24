@@ -8,7 +8,11 @@ int main(int argc, char* argv[]) {
     std::string appName = std::string(WSJCPP_NAME);
     std::string appVersion = std::string(WSJCPP_VERSION);
 
-    // TODO
+    std::string sSource = "some123";
+    std::string sSha1 = WSJCppHashes::sha1_calc_hex(sSource);
+    std::string sMd5 = WSJCppHashes::md5_calc_hex(sSource);
+    std::cout << "sha1('" << sSource << "') = " << sSha1 << std::endl;
+    std::cout << "md5('" << sSource << "') = " << sMd5 << std::endl;
 
     return 0;
 }
