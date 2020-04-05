@@ -6,7 +6,7 @@ REGISTRY_UNIT_TEST(UnitTestMd5)
 
 
 UnitTestMd5::UnitTestMd5()
-    : UnitTestBase("UnitTestMd5") {
+    : WsjcppUnitTestBase("UnitTestMd5") {
     //
 }
 
@@ -15,7 +15,7 @@ void UnitTestMd5::init() {
 }
 
 bool UnitTestMd5::run() {
-
+    bool bTestSuccess = true;
     struct Md5Test {
         Md5Test(std::string sOrig, std::string sExpectedMd5) : sOrig(sOrig), sExpectedMd5(sExpectedMd5) {}
         std::string sOrig;
@@ -30,15 +30,11 @@ bool UnitTestMd5::run() {
     for (unsigned int i = 0; i < tests.size(); i++) {
         std::string sOrig = tests[i]->sOrig;
         std::string sExpectedMd5 = tests[i]->sExpectedMd5;
-        std::string sMd5 = WSJCppHashes::md5_calc_hex(sOrig);
-        WSJCppCore::to_lower(sExpectedMd5);
-        WSJCppCore::to_lower(sMd5);
-        if (sExpectedMd5 == sMd5) {
-            nSuccess++;
-        } else {
-            WSJCppLog::err(TAG, "Expected '" + sExpectedMd5 + "', but got '" + sMd5 + "' for '" + sOrig + "'");
-        }
+        std::string sGotMd5 = WsjcppHashes::md5_calc_hex(sOrig);
+        sExpectedMd5 = WsjcppCore::toLower(sExpectedMd5);
+        sGotMd5 = WsjcppCore::toLower(sGotMd5);
+        compareS(bTestSuccess, "text '" + sOrig + "'", sGotMd5, sExpectedMd5);
     }
-    return nSuccess == tests.size();
+    return bTestSuccess;
 }
 

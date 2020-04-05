@@ -3,7 +3,7 @@
 
 #include <wsjcpp_unit_tests.h>
 
-class UnitTestMd5 : public UnitTestBase {
+class UnitTestMd5 : public WsjcppUnitTestBase {
     public:
         UnitTestMd5();
         virtual void init();

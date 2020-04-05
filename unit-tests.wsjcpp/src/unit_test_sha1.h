@@ -3,7 +3,7 @@
 
 #include <wsjcpp_unit_tests.h>
 
-class UnitTestSha1 : public UnitTestBase {
+class UnitTestSha1 : public WsjcppUnitTestBase {
     public:
         UnitTestSha1();
         virtual void init();

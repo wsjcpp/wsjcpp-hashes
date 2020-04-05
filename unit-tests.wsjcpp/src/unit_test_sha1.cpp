@@ -6,7 +6,7 @@ REGISTRY_UNIT_TEST(UnitTestSha1)
 
 
 UnitTestSha1::UnitTestSha1()
-    : UnitTestBase("UnitTestSha1") {
+    : WsjcppUnitTestBase("UnitTestSha1") {
     //
 }
 
@@ -15,6 +15,7 @@ void UnitTestSha1::init() {
 }
 
 bool UnitTestSha1::run() {
+    bool bTestSuccess = true;
 
     struct Sha1Test {
         Sha1Test(std::string sOrig, std::string sExpectedSha1) : sOrig(sOrig), sExpectedSha1(sExpectedSha1) {}
@@ -30,15 +31,11 @@ bool UnitTestSha1::run() {
     for (unsigned int i = 0; i < tests.size(); i++) {
         std::string sOriginal = tests[i]->sOrig;
         std::string sExpectedSha1 = tests[i]->sExpectedSha1;
-        std::string sSha1 = WSJCppHashes::sha1_calc_hex(sOriginal);
-        WSJCppCore::to_lower(sExpectedSha1);
-        WSJCppCore::to_lower(sSha1);
-        if (sExpectedSha1 == sSha1) {
-            nSuccess++;
-        } else {
-            WSJCppLog::err(TAG, "Expected '" + sExpectedSha1 + "', but got '" + sSha1 + "' for '" + sOriginal + "'");
-        }
+        std::string sGotSha1 = WsjcppHashes::sha1_calc_hex(sOriginal);
+        sExpectedSha1 = WsjcppCore::toLower(sExpectedSha1);
+        sGotSha1 = WsjcppCore::toLower(sGotSha1);
+        compareS(bTestSuccess, "text '" + sOriginal + "'", sGotSha1, sExpectedSha1);
     }
-    return nSuccess == tests.size();
+    return bTestSuccess;
 }
 
