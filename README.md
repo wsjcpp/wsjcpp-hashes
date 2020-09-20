@@ -1,6 +1,6 @@
 # wsjcpp-hashes
 
-[![Build Status](https://api.travis-ci.com/wsjcpp/wsjcpp-hashes.svg?branch=master)](https://travis-ci.com/wsjcpp/wsjcpp-hashes) [![Github Stars](https://img.shields.io/github/stars/wsjcpp/wsjcpp-hashes.svg?label=github%20%E2%98%85)](https://github.com/wsjcpp/wsjcpp-hashes/stargazers) [![Github Stars](https://img.shields.io/github/contributors/wsjcpp/wsjcpp-hashes.svg)](https://github.com/wsjcpp/wsjcpp-hashes/) [![Github Forks](https://img.shields.io/github/forks/wsjcpp/wsjcpp-hashes.svg?label=github%20forks)](https://github.com/wsjcpp/wsjcpp-hashes/network/members)
+[![Build Status](https://api.travis-ci.com/wsjcpp/wsjcpp-hashes.svg?branch=master)](https://travis-ci.com/wsjcpp/wsjcpp-hashes) [![Github Stars](https://img.shields.io/github/stars/wsjcpp/wsjcpp-hashes.svg?label=github%20%E2%98%85)](https://github.com/wsjcpp/wsjcpp-hashes/stargazers) [![Github Stars](https://img.shields.io/github/contributors/wsjcpp/wsjcpp-hashes.svg)](https://github.com/wsjcpp/wsjcpp-hashes/) [![Github Forks](https://img.shields.io/github/forks/wsjcpp/wsjcpp-hashes.svg?label=github%20forks)](https://github.com/wsjcpp/wsjcpp-hashes/network/members) [![Total alerts](https://img.shields.io/lgtm/alerts/g/wsjcpp/wsjcpp-hashes.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/wsjcpp/wsjcpp-hashes/alerts/) [![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/wsjcpp/wsjcpp-hashes.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/wsjcpp/wsjcpp-hashes/context:cpp)
 
 
 ## Intagrate to your project
