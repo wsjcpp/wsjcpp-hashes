@@ -2,7 +2,7 @@
 #include <vector>
 #include <wsjcpp_hashes.h>
 
-REGISTRY_UNIT_TEST(UnitTestSha1)
+REGISTRY_WSJCPP_UNIT_TEST(UnitTestSha1)
 
 
 UnitTestSha1::UnitTestSha1()
@@ -10,12 +10,12 @@ UnitTestSha1::UnitTestSha1()
     //
 }
 
-void UnitTestSha1::init() {
+bool UnitTestSha1::doBeforeTest() {
     // nothing
+    return true;
 }
 
-bool UnitTestSha1::run() {
-    bool bTestSuccess = true;
+void UnitTestSha1::executeTest() {
 
     struct Sha1Test {
         Sha1Test(std::string sOrig, std::string sExpectedSha1) : sOrig(sOrig), sExpectedSha1(sExpectedSha1) {}
@@ -34,8 +34,11 @@ bool UnitTestSha1::run() {
         std::string sGotSha1 = WsjcppHashes::sha1_calc_hex(sOriginal);
         sExpectedSha1 = WsjcppCore::toLower(sExpectedSha1);
         sGotSha1 = WsjcppCore::toLower(sGotSha1);
-        compareS(bTestSuccess, "text '" + sOriginal + "'", sGotSha1, sExpectedSha1);
+        compare("text '" + sOriginal + "'", sGotSha1, sExpectedSha1);
     }
-    return bTestSuccess;
 }
 
+bool UnitTestSha1::doAfterTest() {
+    // nothing
+    return true;
+}
