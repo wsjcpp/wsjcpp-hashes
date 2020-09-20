@@ -2,7 +2,7 @@
 #include <vector>
 #include <wsjcpp_hashes.h>
 
-REGISTRY_UNIT_TEST(UnitTestMd5)
+REGISTRY_WSJCPP_UNIT_TEST(UnitTestMd5)
 
 
 UnitTestMd5::UnitTestMd5()
@@ -10,12 +10,12 @@ UnitTestMd5::UnitTestMd5()
     //
 }
 
-void UnitTestMd5::init() {
+bool UnitTestMd5::doBeforeTest() {
     // nothing
+    return true;
 }
 
-bool UnitTestMd5::run() {
-    bool bTestSuccess = true;
+void UnitTestMd5::executeTest() {
     struct Md5Test {
         Md5Test(std::string sOrig, std::string sExpectedMd5) : sOrig(sOrig), sExpectedMd5(sExpectedMd5) {}
         std::string sOrig;
@@ -33,8 +33,11 @@ bool UnitTestMd5::run() {
         std::string sGotMd5 = WsjcppHashes::md5_calc_hex(sOrig);
         sExpectedMd5 = WsjcppCore::toLower(sExpectedMd5);
         sGotMd5 = WsjcppCore::toLower(sGotMd5);
-        compareS(bTestSuccess, "text '" + sOrig + "'", sGotMd5, sExpectedMd5);
+        compare("text '" + sOrig + "'", sGotMd5, sExpectedMd5);
     }
-    return bTestSuccess;
 }
 
+bool UnitTestMd5::doAfterTest() {
+    // nothing
+    return true;
+}
