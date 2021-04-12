@@ -39,8 +39,8 @@ namespace sha1
     namespace // local
     {
         // Rotate an integer value to left.
-        inline const unsigned int rol(const unsigned int value,
-                const unsigned int steps)
+        inline const unsigned int rol(unsigned int value,
+                unsigned int steps)
         {
             return ((value << steps) | (value >> (32 - steps)));
         }
