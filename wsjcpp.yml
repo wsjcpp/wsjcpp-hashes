@@ -3,14 +3,13 @@ cmake_cxx_standard: 11
 cmake_minimum_required: 3.0
 
 name: wsjcpp-hashes
-version: v0.1.2
+version: v0.1.3
 description: Small Collection of hashes
 issues: https://github.com/wsjcpp/wsjcpp-hashes/issues
 
 repositories:
   - type: main
     url: "https://github.com/wsjcpp/wsjcpp-hashes"
-
 keywords:
   - c++
   - wsjcpp
@@ -28,14 +27,12 @@ authors:
   # wrapper
   - name: Evgenii Sopov
     email: mrseakg@gmail.com
-
 dependencies:
   - name: "wsjcpp-core"
     version: "v0.2.1"
     url: "https://github.com/wsjcpp/wsjcpp-core:master"
     origin: "https://github.com/"
     installation-dir: "./src.wsjcpp/wsjcpp_core"
-
 distribution:
   - source-file: src/md5.cpp
     target-file: md5.cpp
@@ -55,10 +52,17 @@ distribution:
   - source-file: src/wsjcpp_hashes.h
     target-file: wsjcpp_hashes.h
     type: "source-code"
-
 unit-tests:
   cases:
     - name: "Md5"
       description: "check md5"
     - name: "Sha1"
       description: "check sha1"
+    - name: "GetMd5File"
+      description: ""
+    - name: "GetSha1File"
+      description: ""
+    - name: "GetSha1String"
+      description: ""
+    - name: "GetMd5String"
+      description: ""
