@@ -9,8 +9,9 @@ class WsjcppHashes {
         static std::string md5_calc_hex(const std::string &sSource); // deprecated
 
         static std::string getMd5ByString(const std::string &sStr);
-        static std::string getSha1ByString(const std::string &sStr);
         static std::string getMd5ByFile(const std::string &sFilename);
+
+        static std::string getSha1ByString(const std::string &sStr);
         static std::string getSha1ByFile(const std::string &sFilename);
 
 };
