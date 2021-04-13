@@ -45,12 +45,11 @@ std::string WsjcppHashes::getMd5ByFile(const std::string &sFilename) {
     f.read(pBuffer, nBufferSize);
     if (!f) {
         delete[] pBuffer;
-        f.close();
+        // f.close();
         return "Could not read file. Only " + std::to_string(f.gcount()) + " could be read";
     }
     f.close();
 
-    
     MD5 md5;
     md5.update(pBuffer, nBufferSize);
     md5.finalize();
@@ -84,7 +83,7 @@ std::string WsjcppHashes::getSha1ByFile(const std::string &sFilename) {
     f.read(pBuffer, nBufferSize);
     if (!f) {
         delete[] pBuffer;
-        f.close();
+        // f.close();
         return "Could not read file. Only " + std::to_string(f.gcount()) + " could be read";
     }
     f.close();
