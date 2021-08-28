@@ -5,6 +5,12 @@ All notable changes to wsjcpp-hashes project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v0.1.4] - 2021-08-28 (2021 Aug 28)
+
+### Security
+
+- Fixed deepcode warnings
+
 ## [v0.1.3] - 2020-09-12 (2020 Sep 12)
 
 ### Added
